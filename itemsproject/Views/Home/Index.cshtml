@@ -1,0 +1,71 @@
+﻿@model IEnumerable<Item>
+@{
+    ViewData["Title"] = "Dashboard";
+}
+
+<div class="container mt-5">
+    <h2 class="mb-4 text-center text-primary">📊 Dashboard </h2>
+
+    <div class="row text-center mb-5">
+        <div class="col-md-4">
+            <div class="card bg-info text-white shadow">
+                <a asp-controller="Items" asp-action="Index" class="text-decoration-none">
+                    <div class="card bg-info text-white shadow">
+                        <div class="card-body text-center">
+                            <h4>@ViewBag.TotalItems</h4>
+                            <p>Items</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card bg-success text-white shadow">
+                <a asp-controller="Category" asp-action="Index" class="text-decoration-none">
+                    <div class="card bg-success text-white shadow">
+                        <div class="card-body text-center">
+                            <h4>@ViewBag.TotalCategories</h4>
+                            <p>Categories</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+          
+        </div>
+
+        <div class="col-md-4">
+            <div class="card bg-warningtext-white shadow">
+                <a asp-controller="Client" asp-action="Index" class="text-decoration-none">
+                    <div class="card bg-warning text-white shadow">
+                        <div class="card-body text-center">
+                            <h4>@ViewBag.TotalClients</h4>
+                            <p>Clients</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <h4 class="mb-3">🆕 Last items added</h4>
+    <table class="table table-striped table-hover shadow">
+        <thead class="table-dark">
+            <tr>
+                <th>Name</th>
+                <th>Price </th>
+                <th>Category</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in ViewBag.RecentItems)
+            {
+                <tr>
+                    <td>@item.Name</td>
+                    <td>@item.Price €</td>
+                    <td>@item.Category?.Name</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,46 @@
+﻿@model IEnumerable<Category>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="contrainer p-3">
+
+    <partial name="_Notification" />
+
+    <div class="row pt-4">
+        <div class="col-6">
+            <h2 class="text-primary">Category</h2>
+        </div>
+        <div class="col-6 text-end">
+            <a asp-controller="Category" asp-action="Add" class="btn btn-primary"> <i class="bi bi-plus-circle"></i> &nbsp; Add New Category </a>
+        </div>
+    </div> </>
+</div>
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Image</th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr class="table-primary">
+                <td scope="row" width="30%">@item.Name</td>
+                <td>
+                    <img src="@item.ImageSrc" style="width:40px" class="img-thumbnail" />
+                </td>
+                <td>
+                    <a asp-controller="Category" asp-action="Edit" asp-route-Id="@item.Id"
+                       class="btn btn-success"> <i class="bi bi-pencil-square"></i></a>
+                    &nbsp
+                    <a asp-controller="Category" asp-action="Delete" asp-route-Id="@item.Id" class="btn btn-warning"> <i class="bi bi-trash"></i></a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

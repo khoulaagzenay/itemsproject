@@ -1,0 +1,81 @@
+﻿@model IEnumerable<Client>
+
+@{
+    ViewData["Title"] = "Clients";
+}
+
+<div class="container p-3">
+    <partial name="_Notification" />
+
+    <div class="row pt-4">
+        <div class="col-6">
+            <h2 class="text-primary">Clients</h2>
+        </div>
+        <div class="col-6 text-end">
+            <a asp-controller="Client" asp-action="Add" class="btn btn-primary">
+                <i class="bi bi-plus-circle"></i> &nbsp; Add New Client
+            </a>
+        </div>
+    </div>
+</div>
+
+<table class="table table-hover mt-3">
+    <thead>
+        <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Items</th>
+            <th scope="col">Categories</th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var client in Model)
+        {
+            <tr class="table-primary">
+                <td width="25%">@client.Name</td>
+
+                <td width="35%">
+                    @if (client.Items != null && client.Items.Any())
+                    {
+                        <ul>
+                            @foreach (var item in client.Items)
+                            {
+                                @item.Name
+                            }
+                        </ul>
+                    }
+                    else
+                    {
+                        <span class="text-muted">No items</span>
+                    }
+                </td>
+
+                <td width="25%">
+                    @if (client.Items != null && client.Items.Any())
+                    {
+                        <ul>
+                            @foreach (var item in client.Items)
+                            {
+                                @item.Category?.Name
+                            }
+                        </ul>
+                    }
+                    else
+                    {
+                        <span class="text-muted">No categories</span>
+                    }
+                </td>
+
+                <td width="15%">
+                    <a asp-controller="Client" asp-action="Edit" asp-route-id="@client.Id" class="btn btn-success btn-sm">
+                        <i class="bi bi-pencil-square"></i>
+                    </a>
+                    &nbsp;
+                    <a asp-controller="Client" asp-action="Delete" asp-route-id="@client.Id" class="btn btn-danger btn-sm">
+                        <i class="bi bi-trash"></i>
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

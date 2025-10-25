@@ -1,0 +1,41 @@
+﻿@model Client
+@{
+    ViewData["Title"] = "Create";
+    var items = ViewBag.Items as IEnumerable<Item>;
+}
+
+<h1>Create</h1>
+<form asp-action="Add" method="post">
+    <div class="form-group">
+        <label asp-for="Name" class="control-label"></label>
+        <input asp-for="Name" class="form-control" />
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label>Choose Items</label>
+        <select name="selectedItems" class="form-control">
+            @foreach (var item in items)
+            {
+                <option value="@item.Id">
+                    @item.Name 
+                    @item.Category?.Name
+                </option>
+            }
+        </select>
+    </div>
+    <br />
+    <hr />
+
+    <div class="form-group pt-3">
+        <button type="submit" class="btn btn-primary"> Save </button>
+        <a asp-action="index" asp-controller="Client" class="btn btn-secondary"> Back to the list</a>
+    </div>
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+
+

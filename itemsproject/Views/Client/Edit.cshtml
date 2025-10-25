@@ -1,0 +1,45 @@
+﻿@model itemsproject.Models.Client
+
+@{
+    ViewData["Title"] = "Edit Client";
+    var items = ViewBag.Items as IEnumerable<itemsproject.Models.Item> ?? Enumerable.Empty<itemsproject.Models.Item>();
+    var selectedIds = Model.Items?.Select(i => i.Id).ToList() ?? new List<int>();
+}
+
+<div class="container mt-5">
+    <h2 class="text-primary mb-4"> Edit Client</h2>
+
+    <form asp-action="Edit" method="post">
+        <input type="hidden" asp-for="Id" />
+
+        <div class="form-group mb-3">
+            <label asp-for="Name" class="form-label fw-bold"></label>
+            <input asp-for="Name" class="form-control" placeholder="Enter client name" />
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+
+        <div class="form-group mb-4">
+            <label for="selectedItems" class="form-label fw-bold">Select Items</label>
+            <select id="selectedItems" name="selectedItems" class="form-control">
+                @foreach (var item in items)
+                {
+                    <option value="@item.Id" >
+                        @item.Name (@item.Price.ToString("C"))
+                        @if (item.Category != null)
+                        {
+                            @item.Category.Name
+                        }
+                    </option>
+                }
+            </select>
+        </div>
+        <div class="form-group pt-3">
+            <button type="submit" class="btn btn-primary"> Save </button>
+            <a asp-action="index" asp-controller="Client" class="btn btn-secondary"> Back to the list</a>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

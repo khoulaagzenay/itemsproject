@@ -1,0 +1,49 @@
+﻿@model IEnumerable<Item>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="contrainer p-3">
+
+    <partial name="_Notification" />
+
+    <div class="row pt-4">
+        <div class="col-6">
+            <h2 class="text-primary">Item view</h2>
+        </div>
+        <div class="col-6 text-end">
+            <a asp-controller="items" asp-action="Create" class="btn btn-primary"> <i class="bi bi-plus-circle"></i> &nbsp; Add New Item </a>
+        </div>
+    </div > </></div>
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Prix</th>
+            <th scope="col">Categories</th>
+            <th scope="col">img</th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model)
+    {
+            <tr class="table-primary">
+            <td scope="row" width="30%">@item.Name</td>
+            <td width="20%" >@item.Price</td>
+            <td width="30%">@item.Category.Name</td>
+            <td>
+                <img src="~/images/@item.ImagePath" style="width:40px" class="img-thumbnail"/>
+                </td>
+            <td>
+                    <a asp-controller="Items" asp-action="Edit" asp-route-Id="@item.Id"
+                    class="btn btn-success"> <i class="bi bi-pencil-square"></i></a>
+                    &nbsp
+                    <a asp-controller="Items" asp-action="Delete" asp-route-Id="@item.Id" class="btn btn-warning"> <i class="bi bi-trash"></i></a>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
