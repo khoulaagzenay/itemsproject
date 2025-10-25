@@ -1,4 +1,6 @@
 # itemsproject
+![HomeView](ItemApp.png)
+
 # ItemsProject
 
 Projet ASP.NET Core MVC + Entity Framework Core.
