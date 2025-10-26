@@ -66,3 +66,29 @@ wwwroot/lib/** linguist-vendored
 wwwroot/css/**/*.min.css linguist-vendored
 wwwroot/css/bootstrap* linguist-vendored
 wwwroot/css/site.css linguist-vendored
+
+# Ignorer les fichiers CSS/JS tiers et générés pour GitHub Linguist
+###############################################################################
+
+# Dossier des bibliothèques front-end (Bootstrap, jQuery, etc.)
+wwwroot/lib/** linguist-vendored
+
+# Fichiers CSS générés ou standards
+wwwroot/css/**/*.min.css linguist-vendored
+wwwroot/css/bootstrap* linguist-vendored
+wwwroot/css/site.css linguist-vendored
+
+# Fichiers JavaScript générés
+wwwroot/js/**/*.min.js linguist-vendored
+
+# Fichiers des pages Identity
+Areas/Identity/** linguist-vendored
+
+# Fichiers de migration EF Core (non représentatifs du code applicatif)
+Migrations/** linguist-vendored
+
+###############################################################################
+# Prioriser le code C#
+###############################################################################
+*.cs linguist-detectable=true
+*.cshtml linguist-language=HTML
