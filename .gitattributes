@@ -61,4 +61,8 @@
 #*.PDF   diff=astextplain
 #*.rtf   diff=astextplain
 #*.RTF   diff=astextplain
-#* wwwroot/css/* linguist-vendored
+###############################################################################
+wwwroot/lib/** linguist-vendored
+wwwroot/css/**/*.min.css linguist-vendored
+wwwroot/css/bootstrap* linguist-vendored
+wwwroot/css/site.css linguist-vendored
