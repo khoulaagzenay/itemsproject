@@ -73,6 +73,11 @@ wwwroot/css/site.css linguist-vendored
 # Dossier des bibliothèques front-end (Bootstrap, jQuery, etc.)
 wwwroot/lib/** linguist-vendored
 
+# Exclure ce fichier CSS volumineux des statistiques de langage
+/wwwroot/css/Bootstrapstyle.css linguist-vendored
+
+# ou pour tout le dossier CSS
+/wwwroot/css/* linguist-vendored
 # Fichiers CSS générés ou standards
 wwwroot/css/**/*.min.css linguist-vendored
 wwwroot/css/bootstrap* linguist-vendored
